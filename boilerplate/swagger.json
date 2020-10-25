@@ -10,7 +10,7 @@
     }
   },
   "host": "localhost:3000",
-  "basePath": "/api/employees",
+  "basePath": "/api",
   "tags": [
     {
       "name": "Employees",
@@ -27,7 +27,7 @@
     "application/json"
   ],
   "paths": {
-    "/addEmployee": {
+    "/employees": {
       "post": {
         "tags": [
           "Employees"
@@ -56,7 +56,7 @@
         }
       }
     },
-    "/employees": {
+    "/employees/": {
       "get": {
         "tags": [
           "Employees"
@@ -72,7 +72,7 @@
         }
       }
     },
-    "/employee/{id}": {
+    "/employees/{id}": {
       "parameters": [
         {
           "name": "id",
@@ -125,44 +125,33 @@
   "definitions": {
     "Employee": {
       "required": [
-        "name",
-        "_id",
-        "companies"
+        "id",
+        "firstName",
+        "lastName",
+        "hireDate",
+        "role"
       ],
       "properties": {
-        "_id": {
+        "id": {
           "type": "integer",
           "uniqueItems": true
         },
-        "isPublic": {
-          "type": "boolean"
+        "firstName": {
+          "type": "string",
+          "example": "Bob"
         },
-        "name": {
-          "type": "string"
+        "lastName": {
+          "type": "string",
+          "example": "Burgers"
         },
-        "books": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "properties": {
-              "name": {
-                "type": "string"
-              },
-              "amount": {
-                "type": "number"
-              }
-            }
-          }
-
+        "hireDate": {
+          "type": "string",
+          "example": "01/01/2020"
         },
-        "companies": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-
+        "role": {
+          "type": "string",
+          "example": "CEO"
         }
-
       }
     },
     "updateEmployee": {

@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 import bodyParser from 'body-parser';
-import { getEmployeeList ,findEmployeeById } from "../models/employee_dummy_data";
+import { getEmployeeList ,findEmployeeById } from "../models/employee_service";
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json())
 const userList = getEmployeeList(); // assume for now this is your database
