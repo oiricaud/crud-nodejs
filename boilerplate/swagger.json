@@ -2,19 +2,19 @@
   "swagger": "2.0",
   "info": {
     "version": "1.0.0",
-    "title": "My User Project CRUD",
-    "description": "My User Project Application API",
+    "title": "My Employee Project CRUD",
+    "description": "My Employee Project Application API",
     "license": {
       "name": "MIT",
       "url": "https://opensource.org/licenses/MIT"
     }
   },
-  "host": "localhost:8000",
-  "basePath": "/",
+  "host": "localhost:3000",
+  "basePath": "/api/employees",
   "tags": [
     {
-      "name": "Users",
-      "description": "API for users in the system"
+      "name": "Employees",
+      "description": "API for employees in the system"
     }
   ],
   "schemes": [
@@ -27,6 +27,186 @@
     "application/json"
   ],
   "paths": {
+    "/addEmployee": {
+      "post": {
+        "tags": [
+          "Employees"
+        ],
+        "description": "Create new employee in system",
+        "parameters": [
+          {
+            "name": "employee",
+            "in": "body",
+            "description": "Employee that we want to create",
+            "schema": {
+              "$ref": "#/definitions/Employee"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "New employee is created",
+            "schema": {
+              "$ref": "#/definitions/Employee"
+            }
+          }
+        }
+      }
+    },
+    "/employees": {
+      "get": {
+        "tags": [
+          "Employees"
+        ],
+        "summary": "Get all employees in system",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Employees"
+            }
+          }
+        }
+      }
+    },
+    "/employee/{id}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "description": "ID of employee that we want to find",
+          "type": "integer"
+        }
+      ],
+      "delete": {
+        "summary": "Delete employee with given ID",
+        "tags": [
+          "Employees"
+        ],
+        "responses": {
+          "200": {
+            "description": "Employee is deleted",
+            "schema": {
+              "$ref": "#/definitions/Employee"
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Update employee with give ID",
+        "tags": [
+          "Employees"
+        ],
+        "parameters": [
+          {
+            "name": "employee",
+            "in": "body",
+            "description": "Employee with new values of properties",
+            "schema": {
+              "$ref": "#/definitions/updateEmployee"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Employee is updated",
+            "schema": {
+              "$ref": "#/definitions/Employee"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Employee": {
+      "required": [
+        "name",
+        "_id",
+        "companies"
+      ],
+      "properties": {
+        "_id": {
+          "type": "integer",
+          "uniqueItems": true
+        },
+        "isPublic": {
+          "type": "boolean"
+        },
+        "name": {
+          "type": "string"
+        },
+        "books": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "amount": {
+                "type": "number"
+              }
+            }
+          }
+
+        },
+        "companies": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+
+        }
+
+      }
+    },
+    "updateEmployee": {
+      "required": [
+        "name",
+        "companies"
+      ],
+      "properties": {
+        "isPublic": {
+          "type": "boolean"
+        },
+        "name": {
+          "type": "string"
+        },
+        "books": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "amount": {
+                "type": "number"
+              }
+            }
+          }
+
+        },
+        "companies": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+
+        }
+
+      }
+    },
+    "Employees": {
+      "type": "array",
+      "$ref": "#/definitions/Employee"
+    }
 
   }
 }
+
