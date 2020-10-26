@@ -1,6 +1,6 @@
 const axios = require('axios');
 
-const getEmployeeList = () =>  {
+const getEmployeeList = () => {
     console.log('employeeList WOO');
     return [
         {
@@ -57,14 +57,13 @@ async function favoriteJokeApi() {
 
 async function favoriteQuoteApi() {
     try {
-        const {data:response} = await axios.get('https://ron-swanson-quotes.herokuapp.com/v2/quotes') //use data destructuring to get data from the promise object
+        const {data: response} = await axios.get('https://ron-swanson-quotes.herokuapp.com/v2/quotes') //use data destructuring to get data from the promise object
         return response
-    }
-
-    catch (error) {
+    } catch (error) {
         console.log(error);
     }
 }
-module.exports = { favoriteJokeApi, favoriteQuoteApi, findEmployeeById, getEmployeeList, deleteEmployeeById}
+
+module.exports = {favoriteJokeApi, favoriteQuoteApi, findEmployeeById, getEmployeeList, deleteEmployeeById}
 
 

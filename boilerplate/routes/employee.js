@@ -5,8 +5,6 @@ const employeeList = lib.getEmployeeList();
 const express = require('express');
 const router = express.Router();
 
-const DATABASE = {};
-
 /* GET employees listing. */
 router.get('', function (req, res) {
     console.log('GET employees');
@@ -59,20 +57,20 @@ router.post('/', function (req, res) {
             message: "first name is required",
         });
     } else if (!req.body.lastName) {
-      return res.status(400).send({
-        success: "false",
-        message: "last name is required",
-      });
+        return res.status(400).send({
+            success: "false",
+            message: "last name is required",
+        });
     } else if (!req.body.hireDate) {
-      return res.status(400).send({
-        success: "false",
-        message: "hire date is required",
-      });
+        return res.status(400).send({
+            success: "false",
+            message: "hire date is required",
+        });
     } else if (!req.body.role) {
-      return res.status(400).send({
-        success: "false",
-        message: "role is required",
-      });
+        return res.status(400).send({
+            success: "false",
+            message: "role is required",
+        });
     }
 
     (async () => {
@@ -102,7 +100,38 @@ router.post('/', function (req, res) {
 /* PUT when given employee id replace record. */
 router.put('/:id', function (req, res) {
     console.log('PUT employee.js');
-    return res.send(DATABASE);
+    console.log(req.params)
+    const employeeFound = lib.findEmployeeById(req.params.id, employeeList)
+
+    if (!employeeFound) {
+        return res.status(404).send({
+            success: 'false',
+            message: 'user not found',
+        });
+    }
+
+    const updatedEmployee = {
+        id: req.params.id,
+        firstName: req.body.firstName || employeeFound.body.firstName,
+        lastName: req.body.lastName || employeeFound.body.lastName,
+        hireDate: req.body.hireDate || employeeFound.body.hireDate,
+        role: req.body.role || employeeFound.body.role,
+    };
+
+    for (let i = 0; i < employeeList.length; i++) {
+        if (employeeList[i].id == req.params.id) {
+            employeeList[i] = updatedEmployee;
+            return res.status(201).send({
+                success: 'true',
+                message: 'employeeList updated successfully',
+                updatedEmployee
+            });
+        }
+    }
+    return res.status(404).send({
+        success: 'true',
+        message: 'error in update'
+    });
 });
 
 
