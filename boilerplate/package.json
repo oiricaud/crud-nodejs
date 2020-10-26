@@ -13,6 +13,7 @@
     "swagger-ui-express": "^4.1.4"
   },
   "devDependencies": {
+    "cors": "^2.8.5",
     "parcel-bundler": "^1.12.4"
   }
 }
