@@ -1,10 +1,10 @@
 'use strict';
 const cors = require('cors');
 const express = require('express');
-const employeeRoutes = require('./routes/employee');
+const employeeRoutes = require('./routes/employee.route');
 const app = express();
 const port = parseInt(process.env.PORT || '3000');
-const swaggerUi = require('swagger-ui-express'), swaggerDocument = require('./swagger.json');
+const swaggerUi = require('swagger-ui-express'), swaggerDocument = require('./swagger/employee.swagger.json');
 
 app.use(express.json());
 app.use(cors());
@@ -24,5 +24,3 @@ app.listen(port, function () {
 });
 
 module.exports = app;
-
-

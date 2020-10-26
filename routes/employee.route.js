@@ -1,6 +1,6 @@
 'use strict';
 
-const lib = require('../models/employee_service');
+const lib = require('../service/employee.service');
 const employeeList = lib.getEmployeeList();
 const express = require('express');
 const router = express.Router();
@@ -99,7 +99,6 @@ router.post('/', function (req, res) {
 
 /* PUT when given employee id replace record. */
 router.put('/:id', function (req, res) {
-    console.log('PUT employee.js');
     console.log(req.params)
     const employeeFound = lib.findEmployeeById(req.params.id, employeeList)
 
