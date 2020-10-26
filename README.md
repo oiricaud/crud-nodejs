@@ -6,7 +6,7 @@
 npm install
 npm start
 ```
-Now go to `http://localhost:3000/api-docs`
+Now go to `http://localhost:3000/api-docs` to view the swagger api
 
 ## Expected Endpoints
 
