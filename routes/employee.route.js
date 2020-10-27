@@ -94,7 +94,6 @@ router.post('/', function (req, res) {
             employee,
         });
     })()
-
 });
 
 /* PUT when given employee id replace record. */
@@ -132,6 +131,5 @@ router.put('/:id', function (req, res) {
         message: 'error in update'
     });
 });
-
 
 module.exports = router;
