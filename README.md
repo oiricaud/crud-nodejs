@@ -8,6 +8,8 @@ npm start
 ```
 Now go to `http://localhost:3000/api-docs` to view the swagger api
 
+To run the front end visit https://github.com/oiricaud/employee-crud-frontend and run it locally
+
 ## Expected Endpoints
 
 POST http://localhost:3000/api/employees
